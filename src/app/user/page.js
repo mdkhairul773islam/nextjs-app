@@ -1,5 +1,6 @@
 async function userList(){
     let data = await fetch('https://dummyjson.com/users');
+    data.users = undefined;
     data = await data.json();
     return data.users;
 }

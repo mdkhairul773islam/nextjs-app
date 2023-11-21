@@ -1,0 +1,222 @@
+[
+    {
+        "product_id": "1",
+        "name": "Smartphone X",
+        "description": "A high-end smartphone with advanced features.",
+        "price": 899.99,
+        "currency": "USD",
+        "category": "Electronics",
+        "manufacturer": "TechCo",
+        "ratings": {
+            "average": 4.8,
+            "count": 120
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 30
+        },
+        "features": [
+            "6.5-inch OLED display",
+            "Dual-camera system",
+            "Facial recognition"
+        ]
+    },
+    {
+        "product_id": "2",
+        "name": "Laptop Pro",
+        "description": "Powerful laptop for professional use.",
+        "price": 1499.99,
+        "currency": "USD",
+        "category": "Computers",
+        "manufacturer": "TechGear",
+        "ratings": {
+            "average": 4.6,
+            "count": 90
+        },
+        "availability": {
+            "in_stock": false,
+            "stock_quantity": 0
+        },
+        "features": [
+            "15.6-inch Retina display",
+            "Intel Core i7 processor",
+            "16GB RAM"
+        ]
+    },
+    {
+        "product_id": "3",
+        "name": "Fitness Tracker Pro",
+        "description": "Track your fitness activities with precision.",
+        "price": 79.99,
+        "currency": "USD",
+        "category": "Fitness",
+        "manufacturer": "FitTech",
+        "ratings": {
+            "average": 4.5,
+            "count": 150
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 50
+        },
+        "features": [
+            "Heart rate monitor",
+            "Sleep tracking",
+            "Water-resistant"
+        ]
+    },
+    {
+        "product_id": "4",
+        "name": "Ultra HD Smart TV",
+        "description": "Immerse yourself in stunning visuals.",
+        "price": 1299.99,
+        "currency": "USD",
+        "category": "Electronics",
+        "manufacturer": "VisualTech",
+        "ratings": {
+            "average": 4.7,
+            "count": 100
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 20
+        },
+        "features": [
+            "65-inch 4K Ultra HD display",
+            "Smart TV functionality",
+            "Dolby Atmos sound"
+        ]
+    },
+    {
+        "product_id": "5",
+        "name": "Coffee Maker Deluxe",
+        "description": "Brew your favorite coffee with style.",
+        "price": 99.99,
+        "currency": "USD",
+        "category": "Appliances",
+        "manufacturer": "BrewMasters",
+        "ratings": {
+            "average": 4.4,
+            "count": 80
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 100
+        },
+        "features": [
+            "Programmable brewing",
+            "Built-in grinder",
+            "Auto-shutoff"
+        ]
+    },
+    {
+        "product_id": "6",
+        "name": "Gaming Console X",
+        "description": "Experience gaming like never before.",
+        "price": 399.99,
+        "currency": "USD",
+        "category": "Gaming",
+        "manufacturer": "GameTech",
+        "ratings": {
+            "average": 4.9,
+            "count": 200
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 10
+        },
+        "features": [
+            "4K gaming support",
+            "Wireless controllers",
+            "Large game library"
+        ]
+    },
+    {
+        "product_id": "7",
+        "name": "Digital Camera Pro",
+        "description": "Capture moments with professional quality.",
+        "price": 699.99,
+        "currency": "USD",
+        "category": "Photography",
+        "manufacturer": "PhotoTech",
+        "ratings": {
+            "average": 4.6,
+            "count": 120
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 15
+        },
+        "features": [
+            "24MP sensor",
+            "4K video recording",
+            "Interchangeable lenses"
+        ]
+    },
+    {
+        "product_id": "8",
+        "name": "Wireless Headphones",
+        "description": "Immersive audio for your music and calls.",
+        "price": 129.99,
+        "currency": "USD",
+        "category": "Audio",
+        "manufacturer": "AudioMasters",
+        "ratings": {
+            "average": 4.3,
+            "count": 150
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 40
+        },
+        "features": [
+            "Noise-canceling technology",
+            "Bluetooth connectivity",
+            "Long battery life"
+        ]
+    },
+    {
+        "product_id": "9",
+        "name": "Robot Vacuum Cleaner",
+        "description": "Effortless cleaning with smart technology.",
+        "price": 249.99,
+        "currency": "USD",
+        "category": "Home Appliances",
+        "manufacturer": "SmartHome",
+        "ratings": {
+            "average": 4.5,
+            "count": 80
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 25
+        },
+        "features": [
+            "Laser mapping technology",
+            "Voice control compatible",
+            "Self-charging"
+        ]
+    },
+    {
+        "product_id": "10",
+        "name": "Portable Bluetooth Speaker",
+        "description": "Take your music anywhere with this compact speaker.",
+        "price": 59.99,
+        "currency": "USD",
+        "category": "Audio",
+        "manufacturer": "SoundTech",
+        "ratings": {
+            "average": 4.2,
+            "count": 100
+        },
+        "availability": {
+            "in_stock": true,
+            "stock_quantity": 60
+        },
+        "features": [
+            "Bluetooth 5.0",
+            "Water-resistant",
+            "10-hour battery life"
+        ]
+    }
+]

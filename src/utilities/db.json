@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "username": "john_doe",
+      "fullName": "John Doe",
+      "email": "john.doe@example.com",
+      "age": 25,
+      "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "zipcode": "12345",
+        "country": "USA"
+      },
+      "isPremiumUser": true
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "fullName": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "age": 30,
+      "address": {
+        "street": "456 Oak St",
+        "city": "Other City",
+        "zipcode": "54321",
+        "country": "Canada"
+      },
+      "isPremiumUser": false
+    },
+    {
+      "id": 3,
+      "username": "bob_johnson",
+      "fullName": "Bob Johnson",
+      "email": "bob.johnson@example.com",
+      "age": 22,
+      "address": {
+        "street": "789 Pine St",
+        "city": "Another City",
+        "zipcode": "67890",
+        "country": "UK"
+      },
+      "isPremiumUser": true
+    }
+  ]
+  
