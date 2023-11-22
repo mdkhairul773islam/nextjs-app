@@ -1,4 +1,5 @@
 'use client'
+import './login.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { setCookie } from 'nookies';
@@ -9,7 +10,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log('email', email, 'password', password);
     try {
       const response = await axios.post('http://your-laravel-api/login', {
         email,
@@ -28,11 +31,19 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-    </div>
+    <>
+      <form className="max-w-sm mx-auto my-10">
+        <div className="mb-5">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-white dark:text-white">Email</label>
+          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white dark:text-white">Password</label>
+          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+        </div>
+        <button type="submit" onClick={handleLogin} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      </form>
+    </>
   );
 };
 
