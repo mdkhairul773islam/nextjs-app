@@ -3,7 +3,6 @@ import prisma from '../../../lib/prisma';
 
 export default async function handler(req, res) {
   const { name, email, password } = req.body;
-  console.log(req.body);
 
   if (req.method === 'POST') {
     const salt = bcrypt.genSaltSync();
