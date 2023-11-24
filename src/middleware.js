@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import { parse } from 'cookie';
 import verifyToken from './lib/auth';
 export async function middleware(req) {
+
     const { token } = parse(req.headers.get('cookie') || '');
     const url = req.nextUrl.clone();
     const isLoginRoute = url.pathname === '/auth/login';
-
     const isTokenValid = await verifyToken(token);
 
     // If the user is already authenticated and trying to access login page,
