@@ -1,6 +1,7 @@
 async function verifyToken(token) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/verifyToken`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/auth/verifyToken`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token }),

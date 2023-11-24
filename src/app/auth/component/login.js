@@ -1,36 +1,48 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Button from './button';
 import Cookies from 'js-cookie';
 import Message from './message';
+import verifyToken from '@/lib/auth';
+import { useForm } from 'react-hook-form';
+
 const Login = () => {
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            router.push('/user');
+        }
+    }, [isLoggedIn, router]);
+
+    const onSubmit = async (data) => {
         setLoading(true);
         setMessage('');
         setError('');
+
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, { email, password });
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+            const response = await axios.post(`${apiUrl}/auth/login`, data);
             if (response.status === 200) {
                 const token = response.data.token;
-                Cookies.set('token', token, { expires: 1, path: '/' });
+                Cookies.set('token', token, { expires: 0.5, path: '/' });
+                const isTokenValid = await verifyToken(token);
+                isTokenValid && setIsLoggedIn(true);
                 setMessage('User login successfully.');
-                router.push('/user');
             }
-
         } catch (error) {
-            const errorMessage = error.response?.data?.error ?? error.response?.statusText ?? "An unknown error occurred";
-            setError(errorMessage);
+            console.error(error);
+            setError(error.response?.data?.error ?? "An unknown error occurred");
         } finally {
             setLoading(false);
         }
@@ -38,13 +50,11 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ${loading ? 'opacity-50' : ''}`} onSubmit={handleSubmit}>
-                {/* Loading Text */}
+            <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ${loading && 'opacity-50'}`} onSubmit={handleSubmit(onSubmit)}>
                 <Message loading={loading} message="Loading..." type="loading" />
-                {/* Message Display */}
                 <Message message={message} type="success" />
                 <Message message={error} type="error" />
-                {/* Email Input */}
+
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
                     <input
@@ -52,13 +62,12 @@ const Login = () => {
                         id="email"
                         type="email"
                         placeholder="youremail@gmail.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...register("email", { required: true })}
                         autoComplete="off"
                     />
+                    {errors.email && <p className="text-red-500 text-xs italic">Email is required.</p>}
                 </div>
 
-                {/* Password Input */}
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password</label>
                     <input
@@ -66,19 +75,18 @@ const Login = () => {
                         id="password"
                         type="password"
                         placeholder="******************"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        {...register("password", { required: true })}
                         autoComplete="off"
                     />
+                    {errors.password && <p className="text-red-500 text-xs italic">Password is required.</p>}
                 </div>
 
-                {/* Submit Button */}
                 <Button
                     loading={loading}
                     buttonName="Login"
                 />
-                {/* Link to Login */}
-                <p className="text-sm mt-5">Don't have an account?  <Link href="/auth/signup" className="text-blue-500 hover:text-blue-700">Register</Link></p>
+
+                <p className="text-sm mt-5">Don't have an account? <Link className="text-blue-500 hover:text-blue-700" href="/auth/signup">Register</Link></p>
             </form>
         </div>
     );
