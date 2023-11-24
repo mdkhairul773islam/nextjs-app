@@ -5,6 +5,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Button from './button';
+import Cookies from 'js-cookie';
 const Login = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -19,8 +20,9 @@ const Login = () => {
         setError('');
         try {
             const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
-            console.log('res', response.data.token);
             if (response.status === 200) {
+                const token = response.data.token;
+                Cookies.set('token', token, { expires: 1, path: '/' });
                 setMessage('User login successfully.');
                 router.push('/user');
             }

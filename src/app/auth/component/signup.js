@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Button from './button';
 const SignUp = () => {
     const router = useRouter();
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -17,7 +18,7 @@ const SignUp = () => {
         setMessage('');
         setError('');
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/register', { email, password });
+            const response = await axios.post('http://localhost:3000/api/auth/register', { name, email, password });
             setMessage('User registered successfully.');
             if (response.status === 200) {
                 router.push('/auth/login');
@@ -36,6 +37,19 @@ const SignUp = () => {
                 {message && <p className="text-green-500 text-sm font-bold italic mb-2">{message}</p>}
                 {error && <p className="text-red-500 text-sm font-bold italic mb-2">{error}</p>}
                 {/* Email Input */}
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name</label>
+                    <input
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="name"
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        autoComplete="off"
+                    />
+                </div>
+
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
                     <input

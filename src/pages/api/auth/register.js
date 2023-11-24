@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import prisma from '../../../lib/prisma';
 
 export default async function handler(req, res) {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
+  console.log(req.body);
 
   if (req.method === 'POST') {
     const salt = bcrypt.genSaltSync();
@@ -10,11 +11,11 @@ export default async function handler(req, res) {
     try {
       const user = await prisma.user.create({
         data: {
-          email,
+          name, email,
           password: hashedPassword,
         },
       });
-      res.status(200).json({ id: user.id, email: user.email });
+      res.status(200).json({ id: user.id, name: user.name, email: user.email });
     } catch (error) {
       res.status(500).json({ error: 'Error registering user' });
     }

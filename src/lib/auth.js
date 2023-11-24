@@ -1,14 +1,20 @@
-import jwt from 'jsonwebtoken';
-
-export function verifyToken(token) {
-  if (!token) {
-    return null;
-  }
-  
+async function verifyToken(token) {
   try {
-    return jwt.verify(token, process.env.JWT_SECRET);
+    const response = await fetch('http://localhost:3000/api/auth/verifyToken', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.valid;
+    }
+
+    return false;
   } catch (error) {
-    console.error('JWT verification error:', error);
-    return null;
+    return false;
   }
 }
+
+export default verifyToken;
