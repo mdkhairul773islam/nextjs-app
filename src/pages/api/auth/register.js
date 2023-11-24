@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'POST') {
     const salt = bcrypt.genSaltSync();
-    const hashedPassword = bcrypt.hashSync(password, salt);   
+    const hashedPassword = bcrypt.hashSync(password, salt);
     try {
       const user = await prisma.user.create({
         data: {
@@ -14,11 +14,11 @@ export default async function handler(req, res) {
           password: hashedPassword,
         },
       });
-      res.status(200).json([{ message: 'User registered successfully' }, { id: user.id, email: user.email }]);
+      res.status(200).json({ id: user.id, email: user.email });
     } catch (error) {
       res.status(500).json({ error: 'Error registering user' });
     }
-    
+
   } else {
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
