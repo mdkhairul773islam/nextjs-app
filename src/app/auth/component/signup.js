@@ -4,6 +4,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Button from './button';
+import Message from './message';
 const SignUp = () => {
     const router = useRouter();
     const [name, setName] = useState('');
@@ -18,7 +19,7 @@ const SignUp = () => {
         setMessage('');
         setError('');
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/register', { name, email, password });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, email, password });
             setMessage('User registered successfully.');
             if (response.status === 200) {
                 router.push('/auth/login');
@@ -32,10 +33,12 @@ const SignUp = () => {
     }
     return (
         <div className="flex justify-center items-center h-screen">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+            <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ${loading ? 'opacity-50' : ''}`} onSubmit={handleSubmit}>
+                {/* Loading Text */}
+                <Message loading={loading} message="Loading..." type="loading" />
                 {/* Message Display */}
-                {message && <p className="text-green-500 text-sm font-bold italic mb-2">{message}</p>}
-                {error && <p className="text-red-500 text-sm font-bold italic mb-2">{error}</p>}
+                <Message message={message} type="success" />
+                <Message message={error} type="error" />
                 {/* Email Input */}
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name</label>
@@ -46,6 +49,7 @@ const SignUp = () => {
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                         autoComplete="off"
                     />
                 </div>

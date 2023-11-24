@@ -6,7 +6,7 @@ export default function User() {
     const router = useRouter();
     const logout = () => {
         Cookies.remove('token', { path: '/' });
-        router.push('auth/login');
+        router.push('/auth/login');
     };
     return (
         <div>User Dashboard

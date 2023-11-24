@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Button from './button';
 import Cookies from 'js-cookie';
+import Message from './message';
 const Login = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const Login = () => {
         setMessage('');
         setError('');
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, { email, password });
             if (response.status === 200) {
                 const token = response.data.token;
                 Cookies.set('token', token, { expires: 1, path: '/' });
@@ -37,10 +38,12 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+            <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ${loading ? 'opacity-50' : ''}`} onSubmit={handleSubmit}>
+                {/* Loading Text */}
+                <Message loading={loading} message="Loading..." type="loading" />
                 {/* Message Display */}
-                {message && <p className="text-green-500 text-sm font-bold italic mb-2">{message}</p>}
-                {error && <p className="text-red-500 text-sm font-bold italic mb-2">{error}</p>}
+                <Message message={message} type="success" />
+                <Message message={error} type="error" />
                 {/* Email Input */}
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email</label>
