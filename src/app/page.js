@@ -14,6 +14,7 @@ export default function Home() {
         <h3 className="text-2xl font-bold mb-5">Featured Destinations</h3>
         <div className="grid grid-cols-3 gap-4">
           {/* Destination cards will go here */}
+
         </div>
       </div>
       <Footer />
