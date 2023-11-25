@@ -1,6 +1,6 @@
-import Footer from './components/footer';
 import Navbar from './components/navbar';
 import Search from './components/search';
+import Footer from './components/footer';
 export default function Home() {
   return (
     <>
