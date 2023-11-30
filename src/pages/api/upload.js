@@ -1,5 +1,3 @@
-// pages/api/upload.js
-
 import { IncomingForm } from 'formidable';
 import fs from 'fs/promises';
 import path from 'path';
@@ -10,20 +8,19 @@ export const config = {
     },
 };
 
-export default async function handler(req, res) {
+export default function handler(req, res) {
     const form = new IncomingForm();
     form.uploadDir = path.join(process.cwd(), "./public/uploads");
     form.keepExtensions = true;
 
     form.parse(req, async (err, fields, files) => {
         if (err) {
+            console.error(err);
             return res.status(500).json({ error: err.message });
         }
 
-        const uploadedFiles = Array.isArray(files.file) ? files.file : [files.file];
-
         try {
-            // Use async/await to handle each file rename operation
+            const uploadedFiles = Array.isArray(files.file) ? files.file : [files.file];
             for (const file of uploadedFiles) {
                 const filePath = file.filepath;
                 const originalFileName = file.originalFilename;
@@ -33,10 +30,10 @@ export default async function handler(req, res) {
 
                 await fs.rename(filePath, newFilePath);
             }
-            res.status(200).json({ message: `${uploadedFiles.length} files uploaded successfully` });
+            return res.status(200).json({ message: `${uploadedFiles.length} files uploaded successfully` });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'Error processing files' });
+            return res.status(500).json({ error: 'Error processing files' });
         }
     });
 }
