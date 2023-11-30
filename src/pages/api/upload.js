@@ -1,7 +1,7 @@
 // pages/api/upload.js
 
 import { IncomingForm } from 'formidable';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 export const config = {
@@ -11,29 +11,32 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-    const form = await new IncomingForm();
-    form.uploadDir = "./public/uploads";
+    const form = new IncomingForm();
+    form.uploadDir = path.join(process.cwd(), "./public/uploads");
     form.keepExtensions = true;
 
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, async (err, fields, files) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-        const file = files.file[0];
-        const filePath = file.filepath;
-        const originalFileName = file.originalFilename;
-        const fileExtension = path.extname(originalFileName);
-        const newFileName = `${Date.now()}${fileExtension}`;
-        console.log('files', files, 'filePath', filePath, 'originalFileName', originalFileName, 'fileExtension', fileExtension, 'newFileName', newFileName);
 
-        const newFilePath = path.join(form.uploadDir, newFileName);
+        const uploadedFiles = Array.isArray(files.file) ? files.file : [files.file];
 
-        fs.rename(filePath, newFilePath, (err) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
+        try {
+            // Use async/await to handle each file rename operation
+            for (const file of uploadedFiles) {
+                const filePath = file.filepath;
+                const originalFileName = file.originalFilename;
+                const fileExtension = path.extname(originalFileName);
+                const newFileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}${fileExtension}`;
+                const newFilePath = path.join(form.uploadDir, newFileName);
+
+                await fs.rename(filePath, newFilePath);
             }
-            res.status(200).json({ message: 'File uploaded successfully', filePath: `/uploads/${newFileName}` });
-        });
+            res.status(200).json({ message: `${uploadedFiles.length} files uploaded successfully` });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Error processing files' });
+        }
     });
-
 }

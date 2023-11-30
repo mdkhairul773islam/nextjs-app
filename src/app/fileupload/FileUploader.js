@@ -16,7 +16,7 @@ export default function Home() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="file" name="file" />
+            <input type="file" name="file" multiple />
             <button type="submit">Upload File</button>
         </form>
     );
