@@ -1,19 +1,39 @@
-import formidable from 'formidable';
+// pages/api/upload.js
+
+import { IncomingForm } from 'formidable';
+import fs from 'fs';
+import path from 'path';
 
 export const config = {
     api: {
-        bodyParser: false, // Disabling the default body parser
+        bodyParser: false,
     },
 };
 
 export default async function handler(req, res) {
-    const form = new formidable.IncomingForm();
+    const form = await new IncomingForm();
+    form.uploadDir = "./public/uploads";
+    form.keepExtensions = true;
+
     form.parse(req, (err, fields, files) => {
         if (err) {
-            res.status(500).json({ error: 'Error parsing the file' });
-            return;
+            return res.status(500).json({ error: err.message });
         }
-        // Process the file here
-        res.status(200).json({ message: 'File uploaded successfully' });
+        const file = files.file[0];
+        const filePath = file.filepath;
+        const originalFileName = file.originalFilename;
+        const fileExtension = path.extname(originalFileName);
+        const newFileName = `${Date.now()}${fileExtension}`;
+        console.log('files', files, 'filePath', filePath, 'originalFileName', originalFileName, 'fileExtension', fileExtension, 'newFileName', newFileName);
+
+        const newFilePath = path.join(form.uploadDir, newFileName);
+
+        fs.rename(filePath, newFilePath, (err) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(200).json({ message: 'File uploaded successfully', filePath: `/uploads/${newFileName}` });
+        });
     });
+
 }

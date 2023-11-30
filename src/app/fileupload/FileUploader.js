@@ -1,22 +1,8 @@
 "use client"
-import { useState } from 'react';
-
-export default function FileUploader() {
-    const [file, setFile] = useState(null);
-
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
-
+export default function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!file) {
-            alert('Please select a file');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('file', file);
+        const formData = new FormData(e.target);
 
         const response = await fetch('/api/upload', {
             method: 'POST',
@@ -24,21 +10,14 @@ export default function FileUploader() {
         });
 
         // Handle the response here
+        const result = await response.json();
+        console.log(result);
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center p-6">
-            <input
-                type="file"
-                onChange={handleFileChange}
-                className="mb-4"
-            />
-            <button
-                type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-            >
-                Upload File
-            </button>
+        <form onSubmit={handleSubmit}>
+            <input type="file" name="file" />
+            <button type="submit">Upload File</button>
         </form>
     );
 }
