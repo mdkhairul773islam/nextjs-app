@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -17,13 +17,6 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        if (isLoggedIn) {
-            router.push('/user');
-        }
-    }, [isLoggedIn, router]);
 
     const onSubmit = async (data) => {
         setLoading(true);
@@ -33,16 +26,24 @@ const Login = () => {
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL;
             const response = await axios.post(`${apiUrl}/auth/login`, data);
+
             if (response.status === 200) {
                 const token = response.data.token;
-                Cookies.set('token', token, { expires: 0.5, path: '/' });
+                Cookies.set('token', token, { expires: 0.5, path: '/', secure: true }); // Secure flag for HTTPS
                 const isTokenValid = await verifyToken(token);
-                isTokenValid && setIsLoggedIn(true);
                 setMessage('User login successfully.');
+                if (isTokenValid) {
+                    router.push('/user');
+                } else {
+                    setError('Invalid token.');
+                }
             }
         } catch (error) {
-            console.error(error);
-            setError(error.response?.data?.error ?? "An unknown error occurred");
+            if (error.response?.status === 401) {
+                setError('Invalid email or password.');
+            } else {
+                setError('An unknown error occurred.');
+            }
         } finally {
             setLoading(false);
         }

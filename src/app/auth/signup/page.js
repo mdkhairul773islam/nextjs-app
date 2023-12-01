@@ -5,3 +5,7 @@ export default function page() {
     <SignUp />
   )
 }
+export const metadata = {
+  title: 'User signup',
+  description: 'This is a user Sign up form.',
+}

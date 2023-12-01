@@ -6,3 +6,8 @@ export default function page() {
         <Login />
     )
 }
+
+export const metadata = {
+    title: 'User Lign',
+    description: 'This is a user login form.',
+}
