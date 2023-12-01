@@ -9,12 +9,12 @@ const Header = ({ toggleAside }) => {
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
     return (
-        <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <header className="bg-gray-800 text-white p-4 flex justify-between items-center border-b border-200 dark:border-gray-600">
             <div className="flex items-center space-x-1">
                 <button onClick={toggleAside} className="text-white">
-                    <HiMenu className="h-6 w-6" />
+                    <HiMenu className="h-8 w-8" />
                 </button>
-                <h1 className="text-lg font-bold">My Next.js App</h1>
+                <h1 className="text-2xl font-bold">Flowbite</h1>
             </div>
             <div className="relative">
                 <Image
