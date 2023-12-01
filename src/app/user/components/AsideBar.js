@@ -1,16 +1,6 @@
-"use client"
-import React, { useState } from 'react';
-
-const AsideBar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-
-    const toggleCollapse = () => {
-        setIsCollapsed(!isCollapsed);
-    };
-
+const AsideBar = ({ isAsideVisible }) => {
     return (
-        <aside className={`w-64 ${isCollapsed ? 'hidden' : ''} h-screen bg-gray-700 text-white p-5 transition-all`}>
-            <button onClick={toggleCollapse}>{isCollapsed ? 'Expand' : 'Collapse'}</button>
+        <aside className={`${isAsideVisible ? 'w-64' : 'w-25'} h-screen bg-gray-700 text-white p-5`}>
             <ul>
                 <li className="mb-4">Link 1</li>
                 <li className="mb-4">Link 2</li>
