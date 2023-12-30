@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { HiMenu } from 'react-icons/hi';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import Logout from "@/app/user/components/Logout";
 const Header = ({ toggleAside }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-
     return (
         <header className="bg-gray-800 text-white p-4 flex justify-between items-center border-b border-200 dark:border-gray-600">
             <div className="flex items-center space-x-1">
@@ -31,9 +30,7 @@ const Header = ({ toggleAside }) => {
                         <Link href="/user-settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             User Settings
                         </Link>
-                        <Link href="/user-settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Logout
-                        </Link>
+                        <Logout/>
                         {/* Add other dropdown links here */}
                     </div>
                 )}
