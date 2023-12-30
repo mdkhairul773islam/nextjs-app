@@ -1,4 +1,3 @@
-// SubMenu.js
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +8,7 @@ const SubMenu = ({ icon, label, submenuItems, isOpen, onClick }) => (
                 <FontAwesomeIcon icon={icon} className="mr-2" />
                 {label}
             </div>
-            <FontAwesomeIcon icon={isOpen ? faAngleDown : faAngleRight} className="ml-2" />
+            <FontAwesomeIcon icon={isOpen ? faAngleDown : faAngleRight} className="text-xs ml-2" />
         </div>
         {isOpen && (
             <ul className="pl-4 transition-all duration-300">

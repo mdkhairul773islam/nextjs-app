@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faList, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faDashboard, faList, faCog } from '@fortawesome/free-solid-svg-icons';
 import SubMenu from './SubMenu';
+import '../scrollbar.css';
 const AsideBar = ({ isAsideVisible }) => {
     const [submenuStates, setSubmenuStates] = useState(new Array(6).fill(false));
     const toggleSubmenu = (index) => {
@@ -11,11 +12,13 @@ const AsideBar = ({ isAsideVisible }) => {
         setSubmenuStates(newSubmenuStates);
     };
     return (
-        <aside className={`${isAsideVisible ? 'w-64' : 'w-25'} h-screen dark:bg-white text-gray-900 p-5`}>
+        <aside
+            className={`${isAsideVisible ? 'w-64' : 'w-25'} h-screen dark:bg-white text-gray-900 p-5 overflow-y-auto`}
+        >
             <ul className="cursor-pointer select-none">
                 <li className="mb-4">
                     <Link href={"/user"}>
-                        <FontAwesomeIcon icon={faHome} className="mr-2"/>
+                        <FontAwesomeIcon icon={faDashboard} className="mr-2"/>
                         Dashboard
                     </Link>
                 </li>

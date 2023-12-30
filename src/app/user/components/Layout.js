@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Header from './Header';
 import AsideBar from './AsideBar';
 import Footer from './Footer';
-
 const Layout = ({ children }) => {
     const [isAsideVisible, setIsAsideVisible] = useState(true);
     const toggleAside = () => {
