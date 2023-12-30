@@ -14,11 +14,13 @@ const Layout = ({ children }) => {
             <Header toggleAside={toggleAside} />
             <div className="flex flex-1 overflow-hidden">
                 <AsideBar isAsideVisible={isAsideVisible} />
-                <main className="flex-1 overflow-auto p-4 ">
-                    {children}
+                <main className="flex-1 overflow-auto p-4 bg-gray-100 shadow-md">
+                    <div className="bg-white p-6 rounded-md shadow-md">
+                        {children}
+                    </div>
                 </main>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };
