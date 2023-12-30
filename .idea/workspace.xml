@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a629c6fa-fd8b-48ea-8123-bf66bba0ce5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/user/components/AsideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user/components/AsideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/user/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703912304939</updated>
-      <workItem from="1703912307142" duration="7635000" />
+      <workItem from="1703912307142" duration="9013000" />
     </task>
     <servers />
   </component>

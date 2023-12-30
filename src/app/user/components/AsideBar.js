@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faHome, faList, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleDown, faHome, faList, faCog } from '@fortawesome/free-solid-svg-icons';
 
 const AsideBar = ({ isAsideVisible }) => {
     const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -32,9 +32,9 @@ const AsideBar = ({ isAsideVisible }) => {
                     </span>
                     Link 3
                     {submenuOpen ? (
-                        <FontAwesomeIcon icon={faAngleUp} className="ml-2"/>
-                    ) : (
                         <FontAwesomeIcon icon={faAngleDown} className="ml-2"/>
+                    ) : (
+                        <FontAwesomeIcon icon={faAngleRight} className="ml-2"/>
                     )}
                 </li>
                 {submenuOpen && (
