@@ -7,6 +7,8 @@
     <list default="true" id="a629c6fa-fd8b-48ea-8123-bf66bba0ce5b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/user/components/AsideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user/components/AsideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/user/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/user/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user/components/Header.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +47,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -68,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703912304939</updated>
-      <workItem from="1703912307142" duration="9013000" />
+      <workItem from="1703912307142" duration="11930000" />
     </task>
     <servers />
   </component>

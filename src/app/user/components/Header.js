@@ -8,10 +8,10 @@ const Header = ({ toggleAside }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
     return (
-        <header className="bg-gray-800 text-white p-4 flex justify-between items-center border-b border-200 dark:border-gray-600">
+        <header className="dark:bg-white text-gray-900 p-4 flex justify-between items-center border-b border-200 dark:border-gray-600">
             <div className="flex items-center space-x-1">
                 <button onClick={toggleAside} className="text-white">
-                    <HiMenu className="h-8 w-8" />
+                    <HiMenu className="h-8 w-8 text-gray-900" />
                 </button>
                 <h1 className="text-2xl font-bold">Flowbite</h1>
             </div>
