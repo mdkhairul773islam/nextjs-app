@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import LayoutPage from "./components/Layout";
 export const metadata = {
     title: 'User Dashboard',
