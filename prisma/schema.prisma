@@ -13,3 +13,40 @@ model user {
   email    String @unique(map: "User_email_key")
   password String
 }
+
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  deletedAt     DateTime?
+  subcategories Subcategory[]
+  products      Product[]
+}
+
+model Subcategory {
+  id          Int       @id @default(autoincrement())
+  name        String
+  category_id Int
+  category    Category  @relation(fields: [category_id], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  products    Product[]
+}
+
+model Product {
+  id            Int         @id @default(autoincrement())
+  name          String
+  productCode   String
+  barCode       String
+  categoryId    Int
+  subcategoryId Int
+  category      Category    @relation(fields: [categoryId], references: [id])
+  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+  salePrice     Float
+  purchasePrice Float
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     DateTime?
+}
